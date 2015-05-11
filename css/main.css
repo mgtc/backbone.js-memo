@@ -1,0 +1,164 @@
+html{
+    background:#ccc;
+    height:100%;
+    overflow-y:auto;
+    background: url('images/wood_bg.jpg') top center;
+}
+body{ background:#ccc;font-family: 'Microsoft YaHei'; }
+
+.note-tmpl{display:none;}
+
+.note{
+    font-size:16px;
+    overflow:hidden;
+    border-radius:5px;
+    opacity:0.95;
+    -webkit-transition: box-shadow 0.2s ease-in-out;
+    box-shadow:inset 1px 1px 0 rgba(0, 0, 0, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 2px 15px rgba(0, 0, 0, 0.25);
+}
+.note-theme0{ background-image: -webkit-linear-gradient(top, rgb(254,252,204) 25% ,rgb(254,244,164) 64%); }
+.note-theme1{ background-image: -webkit-linear-gradient(top, rgb(181,245,255) 25%, rgb(146,230,255) 64%); }
+.note-theme2{ background-image: -webkit-linear-gradient(top, rgb(255,204,255) 25%, rgb(244,177,255) 64%); }
+.note-theme3{ background-image: -webkit-linear-gradient(top, rgb(255,220,226) 25%, rgb(255,194,198) 64%); }
+.note-theme4{ background-image: -webkit-linear-gradient(top, rgb(221,244,167) 25%, rgb(170,255,105) 64%); }
+.note-theme5{ background-image: -webkit-linear-gradient(top, rgb(191,252,226) 25%, rgb(100,247,187) 64%); }
+.note-theme6{ background-image: -webkit-linear-gradient(top, rgb(170,194,254) 25%, rgb(172,143,254) 64%); }
+.note-theme7{ background-image: -webkit-linear-gradient(top, rgb(254,198,150) 25%, rgb(254,176,106) 64%); }
+
+.note-selected{
+    opacity:1; 
+    box-shadow:inset 1px 1px 0 rgba(0, 0, 0, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 2px 20px rgba(0, 0, 0, 0.45);
+}
+
+.note-nav{
+    border-radius:5px 5px 0 0;
+    border:1px solid #7D7D64;
+    padding:6px 10px 6px 5px;
+    cursor:move;
+    background-image: -webkit-gradient(linear, 0 100%, 0 0, from(rgba(0, 0, 0, 0.15)), to(rgba(0, 0, 0, 0.1)));
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.05),
+     0 0 0 rgba(0, 0, 0, 0.05),
+      0 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+.note-nav-title{font-weight:bold;cursor:pointer;overflow:hidden;display:inline-block;max-width:70%;}
+.note-nav-lock{cursor:pointer;display:inline-block;width:20px;height:18px;line-height:14px;vertical-align:text-top;;background-repeat:no-repeat;overflow:hidden;opacity:0.7;}
+
+.note-lock{background-image:url("images/lock.png");width:18px;margin-left:2px;}
+.note-unlock{background-image:url("images/un_lock.png")}
+.note-nav-close{float:right;cursor:pointer;margin-top:3px;opacity:0.5;}
+.note-nav-close:hover {opacity:0.8;}
+.note-content{
+    margin:5px;
+    padding:5px;
+    outline:none;
+    overflow:overlay;
+    line-height:1.3em;
+    /*-webkit-user-modify: read-write-plaintext-only;*/
+}
+.note-content::-webkit-scrollbar {width:5px;height:5px;}
+.note-content::-webkit-scrollbar-button {display: none;}
+.note-content::-webkit-scrollbar-corner {background: transparent;}                                                                                    
+.note-content::-webkit-scrollbar-thumb,
+.note-content:hover::-webkit-scrollbar-thumb { border-radius: 15px; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); }
+.note-content::-webkit-scrollbar-thumb:hover {border-color: rgba(0,0,0,0.2);}
+.note-content::-webkit-scrollbar-thumb:active {background: rgba(0,0,0,0.1);}   
+
+.content-collapse .note-nav{border-bottom:1px solid #7D7D64;border-radius:5px;}
+.content-collapse .note-content{ display:none; }
+.content-collapse .ui-resizable-handle{ display:none; }
+.content-collapse .note-nav-title{cursor:move;}
+
+.note-lock{display:none;}
+.locked .note-content{ -webkit-user-modify: read-only; }
+.locked .note-unlock{display:none;}
+.locked .note-lock{display:inline-block;}
+.locked .note-nav-title{cursor:move;}
+.locked .note-nav-close{opacity:0.1;}
+
+#modal-settings .modal-body{max-height:600px;}
+.modal-h2{font-size:18px;font-weight:bold;margin-bottom:10px;}
+#modal-title{width:330px;margin-left:22px;height:25px;font-size:15px;}
+.modify-theme{
+    width:80px;
+    height:70px;
+    display:inline-block;
+    margin:10px 22px;
+    cursor:pointer;
+    opacity:0.7;
+    -webkit-transition: box-shadow 0.1s ease-in-out;
+    box-shadow:inset 1px 1px 0 rgba(0, 0, 0, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.modal-theme-selected{
+    opacity:1;
+    box-shadow:inset 1px 6px 0 rgba(255, 59, 33, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 4px 15px rgba(0, 0, 0, 0.45);
+}
+.modal-font-size{margin-left:22px;}
+.modal-font-size li{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    margin-right:30px;
+    background:#eee;
+    text-align:center;
+    line-height:50px;
+    vertical-align:middle;
+    cursor:pointer;
+    opacity:0.7;
+    -webkit-transition: box-shadow 0.1s ease-in-out;
+    box-shadow:inset 1px 1px 0 rgba(0, 0, 0, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.modal-font-size .font-theme-selected{
+    opacity:1;
+    box-shadow:inset 1px 6px 0 rgba(255, 59, 33, 0.45) 
+        ,inset -1px -1px 0 rgba(0, 0, 0, 0.45)
+        , 0 4px 15px rgba(0, 0, 0, 0.45);
+}
+.font-theme0{font-size:12px;}
+.font-theme1{font-size:16px;}
+.font-theme2{font-size:20px;}
+.font-theme3{font-size:26px;}
+.font-theme4{font-size:26px;}
+#modal-set-font{margin-left:-15px;width:40px;display:none;margin-bottom:0;vertical-align:bottom;}
+
+#tmpl-close{position:absolute;z-index:9999;width:190px;}
+.tmpl-close-confirm{
+    box-shadow:2px 1px 5px rgba(0, 0, 0, 0.25) 
+        ,2px 1px 5px rgba(0, 0, 0, 0.25)
+        , 2px 2px 5px rgba(0, 0, 0, 0.25);
+}
+.tmpl-close-title{margin-bottom:10px;font-size:16px;}
+.tmpl-close-hide{width:0;height:0;overflow:hidden;}
+
+.notty-info {position:fixed;bottom:12px;right:5px;}
+.notty-info a{font-size:18px;background:rgba(0,0,0,0.15);padding:10px;color:#888;border-radius:5px;}
+.notty-info a:hover {background:rgba(0,0,0,0.3);text-decoration:none;color:#ccc;}
+
+#modal-notty-info { background:#ececec; padding:30px 30px; width:490px; margin-left:-245px; }
+#modal-notty-info .modal-body { max-height:600px; }
+#modal-notty-info h2 { margin-bottom:30px; }
+.modal-notty-usage { margin-bottom:50px; }
+.modal-notty-usage li { list-style:none; font-size:14px; color:#666; margin-bottom:10px; }
+
+
+
+
+[class^="icon-"],[class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("images/glyphicons-halflings.png");
+    background-repeat: no-repeat;
+    *margin-right: .3em;
+}

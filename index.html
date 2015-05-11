@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Backbone.js 便签</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.6.custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-icon.css" />
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/backbone.js"></script>
+    <script src="js/backbone.localStorage.js"></script>
+    <script src="js/jquery-ui-1.8.14.custom.min.js"></script>
+    <script src="js/sanitize.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body id="container">
+    <div class="note-tmpl" id="note-template">
+            <div class="note-nav">
+                <i class="note-nav-lock note-lock" title="单击解锁"></i>
+                <i class="note-nav-lock note-unlock" title="单击锁定"></i>
+                <span class="note-nav-title" title="单击改变标题">{{=title}}</span>
+                <i class="note-nav-close icon-remove" title="移除便签"></i>
+            </div>
+            <div class="note-content" contenteditable>{{=content}}
+            </div>
+    </div>
+    <div class="modal hide fade" id="modal-settings">
+        <div class="modal-body">
+            <h2 class="modal-h2">便签标题</h2>
+            <div><input id="modal-title" name="" type="text" value=""/> </div>
+
+            <h2 class="modal-h2">便签背景色</h2>
+            <div class="modify-theme note-theme0" data-themeid="0"></div>
+            <div class="modify-theme note-theme1" data-themeid="1"></div>
+            <div class="modify-theme note-theme2" data-themeid="2"></div>
+            <div class="modify-theme note-theme3" data-themeid="3"></div>
+            <div class="modify-theme note-theme4" data-themeid="4"></div>
+            <div class="modify-theme note-theme5" data-themeid="5"></div>
+            <div class="modify-theme note-theme6" data-themeid="6"></div>
+            <div class="modify-theme note-theme7" data-themeid="7"></div>
+
+            <h2 class="modal-h2">便签字体</h2>
+            <ul class="modal-font-size">
+                <li class="font-theme0" data-fonttheme="0">12</li>
+                <li class="font-theme1" data-fonttheme="1">16</li>
+                <li class="font-theme2" data-fonttheme="2">20</li>
+                <li class="font-theme3" data-fonttheme="3">26</li>
+                <li id="font-theme-custom" class="font-theme4" data-fonttheme="4">?</li>
+                <input id="modal-set-font" name="" type="text" value="" type="number" maxlength="2"/>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" id="modal-cancel-btn">关闭</a>
+            <a href="#" class="btn btn-primary" id="modal-save-btn">保存</a>
+        </div>
+    </div>
+    <div id="tmpl-close" class="hide">
+        <div class="alert fade in tmpl-close-confirm">
+            <div class="tmpl-close-title">确定删除便签？</div>
+            <div>
+                <input type="button" value="取消" class="btn" id="btn-close-cancel"/>
+                <input type="button" value="移除" class="btn btn-info" id="btn-close-confirm"/>
+            </div>
+            <div class="tmpl-close-hide">
+                <input id="tmpl-close-txt" name="" type="text"/>
+            </div>
+        </div>
+    </div>
+    <div class="notty-info">
+        <a href="#" class="ficon-question" id="btn-notty-info"></a>
+    </div>
+    <div class="modal hide fade" id="modal-notty-info">
+        <div class="modal-body">
+            <h2 class="modal-h2">使用说明</h2>
+            <ul class="modal-notty-usage">
+                <li>- 双击背景图片：新建便签</li>
+                <li>- 单击便签标题：改变单个便签背景色</li>
+                <li>- 点击锁图标：锁定便签</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
